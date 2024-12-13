@@ -29,7 +29,8 @@ if ("geolocation" in navigator) {
 }
 
 // READ NFC
-document.querySelector("button").addEventListener("click", readTag);
+document.getElementById("nfc_read").addEventListener("click", readTag);
+
 async function readTag() {
   if ("NDEFReader" in window) {
     const ndef = new NDEFReader();
@@ -43,20 +44,6 @@ async function readTag() {
           consoleLog("=== data ===\n" + decoder.decode(record.data));
         }
       };
-    } catch (error) {
-      consoleLog(error);
-    }
-  } else {
-    consoleLog("Web NFC is not supported.");
-  }
-}
-
-async function writeTag() {
-  if ("NDEFReader" in window) {
-    const ndef = new NDEFReader();
-    try {
-      await ndef.write("What Web Can Do Today");
-      consoleLog("NDEF message written!");
     } catch (error) {
       consoleLog(error);
     }
