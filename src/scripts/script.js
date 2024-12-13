@@ -1,5 +1,29 @@
-console.log("Hello World");
+let latPapier = 45.655107;
+let lonPapier = 0.14835;
 
+navigator.geolocation.getCurrentPosition(success, error, options);
+
+var options = {
+  enableHighAccuracy: true,
+  timeout: 5000,
+  maximumAge: 0,
+};
+
+function success(pos) {
+  var crd = pos.coords;
+
+  console.log("Votre position actuelle est :");
+  console.log(`Latitude : ${crd.latitude}`);
+  console.log(`Longitude : ${crd.longitude}`);
+
+  console.log(distance(crd.latitude, crd.longitude, latPapier, lonPapier));
+}
+
+function error(err) {
+  console.warn(`ERREUR (${err.code}): ${err.message}`);
+}
+
+// Geolocalisation
 var target = document.getElementById("target");
 var watchId;
 
@@ -40,7 +64,6 @@ async function readTag() {
         const decoder = new TextDecoder();
         for (const record of event.message.records) {
           consoleLog("Record type:  " + record.recordType);
-          consoleLog("MIME type:    " + record.mediaType);
           consoleLog("=== data ===\n" + decoder.decode(record.data));
         }
       };
@@ -59,5 +82,39 @@ function consoleLog(data) {
 
 // VIBRATE
 function vibrateSimple() {
-  navigator.vibrate(200);
+  navigator.vibrate(2000);
+}
+
+// Renvoit un angle en radian en prenant en entrée un angle en degré
+function toRadians(angle) {
+  return angle * (Math.PI / 180);
+}
+
+/**
+ * Calcul de la distance entre 2 point géographique
+ * Utilise la formule de Haversine
+ *  @param user_lat La Latitude de l'utilisateur
+ *  @param user_lon La longitude de l'utilisateur
+ *  @param chest_lat La latitude du coffre
+ *  @param chest_lon La longitude du coffre
+ *  @returns La distance entre l'utilisateur et le coffre en mètre arrondis au centième
+ */
+function distance(user_lat, user_lon, chest_lat, chest_lon) {
+  let radius = 6371; // Rayon de la terre en Km
+  let dLat = toRadians(chest_lat - user_lat);
+  let dLon = toRadians(chest_lon - user_lon);
+
+  let userLatRad = toRadians(user_lat);
+  let chestLatRad = toRadians(chest_lat);
+
+  let a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(userLatRad) *
+      Math.cos(chestLatRad) *
+      Math.sin(dLon / 2) *
+      Math.sin(dLon / 2);
+
+  let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+  return (radius * c * 1000).toFixed(2);
 }
