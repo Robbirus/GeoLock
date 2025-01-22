@@ -1,5 +1,5 @@
-let latPapier = 45.655107;
-let lonPapier = 0.14835;
+let latPapier = 45.65496057866898;
+let lonPapier = 0.1489350003864729;
 
 navigator.geolocation.getCurrentPosition(success, error, options);
 
@@ -16,7 +16,15 @@ function success(pos) {
   console.log(`Latitude : ${crd.latitude}`);
   console.log(`Longitude : ${crd.longitude}`);
 
-  console.log(distance(crd.latitude, crd.longitude, latPapier, lonPapier));
+  let lat = crd.latitude;
+  let lon = crd.longitude;
+
+  console.log(distance(lat, lon, latPapier, lonPapier));
+  let distanceTarget = document.getElementById("distancePont");
+  let lenght = document.createElement("p");
+  lenght.innerHTML =
+    "distance : " + distance(lat, lon, latPapier, lonPapier) + " mètres";
+  distanceTarget.append(lenght);
 }
 
 function error(err) {
@@ -90,6 +98,8 @@ function toRadians(angle) {
   return angle * (Math.PI / 180);
 }
 
+var distancePont = document.getElementById("distancePont");
+
 /**
  * Calcul de la distance entre 2 point géographique
  * Utilise la formule de Haversine
@@ -116,5 +126,6 @@ function distance(user_lat, user_lon, chest_lat, chest_lon) {
 
   let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
+  distancePont.appendChild(radius * c * 1000).toFixed(2);
   return (radius * c * 1000).toFixed(2);
 }
