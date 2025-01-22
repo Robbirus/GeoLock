@@ -16,8 +16,8 @@ function success(pos) {
   console.log(`Latitude : ${crd.latitude}`);
   console.log(`Longitude : ${crd.longitude}`);
 
-  let lat = crd.latitude;
-  let lon = crd.longitude;
+  var lat = crd.latitude;
+  var lon = crd.longitude;
 
   console.log(distance(lat, lon, latPapier, lonPapier));
   let distanceTarget = document.getElementById("distancePont");
@@ -99,7 +99,9 @@ function toRadians(angle) {
 }
 
 var distancePont = document.getElementById("distancePont");
-document.getElementById("distance").addEventListener("click", distance);
+document
+  .getElementById("distance")
+  .addEventListener("click", distance(lat, lon, latPapier, lonPapier));
 
 /**
  * Calcul de la distance entre 2 point géographique
