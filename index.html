@@ -9,8 +9,33 @@
   </head>
 
   <body>
+    <p>
+      Veuillez activez la localisation et le NFC. Si le site ne réagis pas,
+      rechargez la page.
+    </p>
+    <p>
+      Le temps de calcul de la distance peut être un peu long, soyez patient.
+    </p>
+    <p>
+      Permission actuel Geolocalisation est<b id="geostatus">non disponible</b>.
+    </p>
+    <p>
+      Permission actuel notification est<b id="notifstatus">non disponible</b>.
+    </p>
+
     <!--Geolocalisation-->
-    <button id="askButton">Ask for location</button>
+    <p>
+      <button onclick="requestGeoPermission()">
+        Demande l'autorisation d'obtenir la localisation
+      </button>
+    </p>
+
+    <!--Notification-->
+    <p>
+      <button onclick="requestNotifsPermission()">
+        Demande l'autorisation d'envoyer des notifications
+      </button>
+    </p>
 
     <div id="target"></div>
 
@@ -18,21 +43,10 @@
     <p>
       <button id="nfc_read">Open NFC Chest</button>
     </p>
-    <pre id="log"></pre>
-    <p>
-      <small
-        >Based on the code snippets from
-        <a href="https://w3c.github.io/web-nfc/#examples">specification draft</a
-        >.</small
-      >
-    </p>
-
-    <!--VIBRATE-->
-    <button onclick="vibrateSimple()">Vibrate for 2000 ms</button>
 
     <!--Test de distance-->
     <button id="distance" onclick="obtainDistance()">
-      Obtiens la distance entre l'utilisation et le coffre
+      Obtiens la distance entre l'utilisateur et le coffre
     </button>
     <div id="distancePont"></div>
   </body>

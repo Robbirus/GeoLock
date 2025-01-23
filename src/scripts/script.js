@@ -1,7 +1,49 @@
+// Les coordonnées latitude longitude du coffre
 let latPapier = 45.65496057866898;
 let lonPapier = 0.1489350003864729;
 
 navigator.geolocation.getCurrentPosition(success, error, options);
+
+var $geostatus = document.getElementById("geostatus");
+var $notifstatus = document.getElementById("notifstatus");
+
+if ("Geolocalisation" in window) {
+  $geostatus.innerText = Geolocation.permission;
+}
+
+if ("Notification" in window) {
+  $notifstatus.innerText = Notification.permission;
+}
+
+/**
+ * Fonction permettant de demander la permissions de Notification
+ * @returns null
+ */
+function requestNotifsPermission() {
+  if (!("Notification" in window)) {
+    alert("Notification API not supported!");
+    return;
+  }
+
+  Notification.requestPermission(function (result) {
+    $notifstatus.innerText = result;
+  });
+}
+
+/**
+ * Fonction permettant de demander la permissions de Geolocalisation
+ * @returns null
+ */
+function requestGeoPermission() {
+  if (!("Geolocalisation" in window)) {
+    alert("Geolocalisation API not supported!");
+    return;
+  }
+
+  Geolocation.requestPermission(function (result) {
+    $geostatus.innerText = result;
+  });
+}
 
 var options = {
   enableHighAccuracy: true,
@@ -88,12 +130,18 @@ function consoleLog(data) {
   logElement.innerHTML += data + "\n";
 }
 
-// VIBRATE
-function vibrateSimple() {
-  navigator.vibrate(2000);
+/**
+ * Une simple fonction permmetant de vibre le téléphone pendant un temps donnée
+ * @param duration la durée de la vibration en milliseconde
+ **/
+function vibrateSimple(duration) {
+  navigator.vibrate(duration);
 }
 
-// Renvoit un angle en radian en prenant en entrée un angle en degré
+/**
+ * Renvoit un angle en radian en prenant en entrée un angle en degré
+ * @param angle l'angle en degré
+ **/
 function toRadians(angle) {
   return angle * (Math.PI / 180);
 }
@@ -125,4 +173,48 @@ function distance(user_lat, user_lon, chest_lat, chest_lon) {
   let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
   return (radius * c * 1000).toFixed(2);
+}
+
+/**
+ * La fonction permet d'envoyer des notifications selons la proximités de l'utilisateur au coffre
+ */
+function checkDistance() {
+  let distance = distance(lat, lon, latPapier, lonPapier);
+
+  str = "";
+
+  if (distance < 100 && distance > 50) {
+    str = "Hey Un coffre est pas loin !";
+    persistentNotification(str);
+  }
+
+  if (distance < 50) {
+    vibrateSimple(500);
+    vibrateSimple(500);
+    vibrateSimple(500);
+    vibrateSimple(500);
+    str = "Le coffre est vraiment proche !";
+    persistentNotification(str);
+  }
+}
+
+/**
+ * Fonction permettant d'envoyer des notifications permanentes sur le navigateur
+ * @param text le texte a afficher dans la notification
+ * @returns null
+ */
+function persistentNotification(text) {
+  if (!("Notification" in window) || !("ServiceWorkerRegistration" in window)) {
+    alert("Persistent Notification API not supported!");
+    return;
+  }
+
+  try {
+    navigator.serviceWorker
+      .getRegistration()
+      .then((reg) => reg.showNotification(text))
+      .catch((err) => alert("Service Worker registration error: " + err));
+  } catch (err) {
+    alert("Notification API error: " + err);
+  }
 }
