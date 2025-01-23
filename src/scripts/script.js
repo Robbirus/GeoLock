@@ -129,6 +129,6 @@ function distance(user_lat, user_lon, chest_lat, chest_lon) {
 
   let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
-  distancePont.appendChild(radius * c * 1000).toFixed(2);
+  distancePont.innerText = (radius * c * 1000).toFixed(2);
   return (radius * c * 1000).toFixed(2);
 }
