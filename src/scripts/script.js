@@ -98,8 +98,6 @@ function toRadians(angle) {
   return angle * (Math.PI / 180);
 }
 
-var distancePont = document.getElementById("distancePont");
-
 /**
  * Calcul de la distance entre 2 point géographique
  * Utilise la formule de Haversine
@@ -126,6 +124,5 @@ function distance(user_lat, user_lon, chest_lat, chest_lon) {
 
   let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
-  distancePont.innerText = (radius * c * 1000).toFixed(2);
   return (radius * c * 1000).toFixed(2);
 }
