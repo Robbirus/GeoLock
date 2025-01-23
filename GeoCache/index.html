@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GeoLock</title>
+    <link rel="stylesheet" href="src/styles/style.css" />
+    <script src="src/scripts/script.js" defer></script>
+  </head>
+
+  <body>
+    <!--Geolocalisation-->
+    <button id="askButton">Ask for location</button>
+
+    <div id="target"></div>
+
+    <!--NFC READ-->
+    <p>
+      <button id="nfc_read">Open NFC Chest</button>
+    </p>
+    <pre id="log"></pre>
+    <p>
+      <small
+        >Based on the code snippets from
+        <a href="https://w3c.github.io/web-nfc/#examples">specification draft</a
+        >.</small
+      >
+    </p>
+
+    <!--VIBRATE-->
+    <button onclick="vibrateSimple()">Vibrate for 2000 ms</button>
+
+    <!--Test de distance-->
+    <button id="distance" onclick="obtainDistance()">
+      Obtiens la distance entre l'utilisation et le coffre
+    </button>
+    <div id="distancePont">AAAAAAAAAAAAAAAAAAAAAAAAAA</div>
+  </body>
+</html>
