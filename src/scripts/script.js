@@ -99,9 +99,6 @@ function toRadians(angle) {
 }
 
 var distancePont = document.getElementById("distancePont");
-document
-  .getElementById("distance")
-  .addEventListener("click", distance(lat, lon, latPapier, lonPapier));
 
 /**
  * Calcul de la distance entre 2 point géographique
