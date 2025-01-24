@@ -111,48 +111,11 @@ function consoleLog(data) {
 }
 
 /**
- * Une simple fonction permmetant de vibre le téléphone pendant un temps donnée
- * @param duration la durée de la vibration en milliseconde
- **/
-function vibrateSimple(duration) {
-  navigator.vibrate(duration);
-}
-
-/**
  * Renvoit un angle en radian en prenant en entrée un angle en degré
  * @param angle l'angle en degré
  **/
 function toRadians(angle) {
   return angle * (Math.PI / 180);
-}
-
-/**
- * Calcul de la distance entre 2 point géographique
- * Utilise la formule de Haversine
- *  @param user_lat La Latitude de l'utilisateur
- *  @param user_lon La longitude de l'utilisateur
- *  @param chest_lat La latitude du coffre
- *  @param chest_lon La longitude du coffre
- *  @returns La distance entre l'utilisateur et le coffre en mètre arrondis au centième
- */
-function distance(user_lat, user_lon, chest_lat, chest_lon) {
-  let radius = 6371; // Rayon de la terre en Km
-  let dLat = toRadians(chest_lat - user_lat);
-  let dLon = toRadians(chest_lon - user_lon);
-
-  let userLatRad = toRadians(user_lat);
-  let chestLatRad = toRadians(chest_lat);
-
-  let a =
-    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-    Math.cos(userLatRad) *
-      Math.cos(chestLatRad) *
-      Math.sin(dLon / 2) *
-      Math.sin(dLon / 2);
-
-  let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-
-  return (radius * c * 1000).toFixed(2);
 }
 
 /**
@@ -167,7 +130,7 @@ function checkDistance() {
     persistentNotification(str);
   }
 
-  if (distance < 200 && distance > 50) {
+  if (distance < 900 && distance > 50) {
     str = "Hey Un coffre est pas loin !";
     persistentNotification(str);
   }
@@ -201,4 +164,41 @@ function persistentNotification(text) {
   } catch (err) {
     alert("Notification API error: " + err);
   }
+}
+
+/**
+ * Calcul de la distance entre 2 point géographique
+ * Utilise la formule de Haversine
+ *  @param user_lat La Latitude de l'utilisateur
+ *  @param user_lon La longitude de l'utilisateur
+ *  @param chest_lat La latitude du coffre
+ *  @param chest_lon La longitude du coffre
+ *  @returns La distance entre l'utilisateur et le coffre en mètre arrondis au centième
+ */
+function distance(user_lat, user_lon, chest_lat, chest_lon) {
+  let radius = 6371; // Rayon de la terre en Km
+  let dLat = toRadians(chest_lat - user_lat);
+  let dLon = toRadians(chest_lon - user_lon);
+
+  let userLatRad = toRadians(user_lat);
+  let chestLatRad = toRadians(chest_lat);
+
+  let a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(userLatRad) *
+      Math.cos(chestLatRad) *
+      Math.sin(dLon / 2) *
+      Math.sin(dLon / 2);
+
+  let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+  return (radius * c * 1000).toFixed(2);
+}
+
+/**
+ * Une simple fonction permmetant de vibre le téléphone pendant un temps donnée
+ * @param duration la durée de la vibration en milliseconde
+ **/
+function vibrateSimple(duration) {
+  navigator.vibrate(duration);
 }
