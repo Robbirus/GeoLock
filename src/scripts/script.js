@@ -40,6 +40,7 @@ function error(err) {
 
 // Geolocalisation
 var target = document.getElementById("target");
+var coordStatus = document.getElementById("coord");
 var watchId;
 
 function appendLocation(location, verb) {
