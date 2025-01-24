@@ -8,48 +8,6 @@ let lonUser;
 
 navigator.geolocation.getCurrentPosition(success, error, options);
 
-var $notifstatus = document.getElementById("notifstatus");
-
-if ("Notification" in window) {
-  $notifstatus.innerText = Notification.permission;
-}
-
-/**
- * Fonction permettant de demander la permissions de Notification
- * @returns null
- */
-function requestPermission() {
-  if (!("Notification" in window)) {
-    alert("Notification API not supported!");
-    return;
-  }
-
-  Notification.requestPermission(function (result) {
-    $notifstatus.innerText = result;
-  });
-}
-
-/**
- * Fonction permettant d'envoyer des notifications permanentes sur le navigateur
- * @param text le texte a afficher dans la notification
- * @returns null
- */
-function persistentNotification(text) {
-  if (!("Notification" in window) || !("ServiceWorkerRegistration" in window)) {
-    alert("Persistent Notification API not supported!");
-    return;
-  }
-
-  try {
-    navigator.serviceWorker
-      .getRegistration()
-      .then((reg) => reg.showNotification(text))
-      .catch((err) => alert("Service Worker registration error: " + err));
-  } catch (err) {
-    alert("Notification API error: " + err);
-  }
-}
-
 var options = {
   enableHighAccuracy: true,
   timeout: 5000,
@@ -95,7 +53,7 @@ function appendLocation(location, verb) {
     ", " +
     location.coords.longitude +
     "";
-  target.appendChild(newLocation);
+  target.innerText(newLocation);
 }
 
 if ("geolocation" in navigator) {
@@ -145,6 +103,8 @@ function toRadians(angle) {
   return angle * (Math.PI / 180);
 }
 
+// Reference du paragraphe Status Distance
+var statusDistance = document.getElementById("statusDistance");
 /**
  * La fonction permet d'envoyer des notifications selons la proximités de l'utilisateur au coffre
  */
@@ -154,12 +114,12 @@ function checkDistance() {
   str = "";
   if (d > 1000) {
     str = "Oh, il semblerait que le coffre soit loin";
-    persistentNotification(str);
+    updateStatus(str);
   }
 
   if (d < 900 && d > 50) {
     str = "Hey Un coffre est pas loin !";
-    persistentNotification(str);
+    updateStatus(str);
   }
 
   if (d < 50) {
@@ -168,8 +128,16 @@ function checkDistance() {
     vibrateSimple(500);
     vibrateSimple(500);
     str = "Le coffre est vraiment proche !";
-    persistentNotification(str);
+    updateStatus(str);
   }
+}
+
+/**
+ * Permet de mettre a jour le status de la distance
+ * @param str le texte du status a afficher
+ */
+function updateStatus(str) {
+  statusDistance.innerText(str);
 }
 
 /**

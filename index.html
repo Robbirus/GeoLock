@@ -16,20 +16,10 @@
     <p>
       Le temps de calcul de la distance peut être un peu long, soyez patient.
     </p>
-    <p>
-      Permission actuel notification est<b id="notifstatus"> non disponible</b>.
-    </p>
 
     <!--Geolocalisation-->
     <p>
       <button id="askButton">Ask for location</button>
-    </p>
-
-    <!--Notification-->
-    <p>
-      <button onclick="requestPermission()">
-        Demande l'autorisation d'envoyer des notifications
-      </button>
     </p>
 
     <div id="target"></div>
@@ -44,5 +34,9 @@
       Obtiens la distance entre l'utilisateur et le coffre
     </button>
     <div id="distancePont"></div>
+
+    <div>
+      <p id="statusDistance"></p>
+    </div>
   </body>
 </html>

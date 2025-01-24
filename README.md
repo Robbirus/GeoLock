@@ -7,3 +7,6 @@ Fonctionnellement, la position du coffre sera connu et l'écart sera calculé en
 A plus de 1000 m, le site enverra une notification pour avertir l'utilisateur qu'il s'éloigne.
 A moins de 100 m le site enverra une notification pour attirer l'attention de l'utilisateur.
 A moins de 50 m le site fera vibré le téléphone avec un certain intervalle, comme un détecteur de métal.
+
+Cependant Netlify ne permet pas les notifications push up.
+Ou alors je n'ai pas réussis à le mettre en place.
