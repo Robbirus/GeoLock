@@ -167,7 +167,7 @@ function checkDistance() {
     persistentNotification(str);
   }
 
-  if (distance < 100 && distance > 50) {
+  if (distance < 200 && distance > 50) {
     str = "Hey Un coffre est pas loin !";
     persistentNotification(str);
   }
