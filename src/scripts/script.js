@@ -128,7 +128,7 @@ function toRadians(angle) {
  * La fonction permet d'envoyer des notifications selons la proximités de l'utilisateur au coffre
  */
 function checkDistance() {
-  let d = distance(lat, lon, latPapier, lonPapier);
+  let d = distance(latUser, lonUser, latPapier, lonPapier);
 
   str = "";
   if (d > 1000) {
