@@ -29,6 +29,27 @@ function requestPermission() {
   });
 }
 
+/**
+ * Fonction permettant d'envoyer des notifications permanentes sur le navigateur
+ * @param text le texte a afficher dans la notification
+ * @returns null
+ */
+function persistentNotification(text) {
+  if (!("Notification" in window) || !("ServiceWorkerRegistration" in window)) {
+    alert("Persistent Notification API not supported!");
+    return;
+  }
+
+  try {
+    navigator.serviceWorker
+      .getRegistration()
+      .then((reg) => reg.showNotification(text))
+      .catch((err) => alert("Service Worker registration error: " + err));
+  } catch (err) {
+    alert("Notification API error: " + err);
+  }
+}
+
 var options = {
   enableHighAccuracy: true,
   timeout: 5000,
@@ -148,27 +169,6 @@ function checkDistance() {
     vibrateSimple(500);
     str = "Le coffre est vraiment proche !";
     persistentNotification(str);
-  }
-}
-
-/**
- * Fonction permettant d'envoyer des notifications permanentes sur le navigateur
- * @param text le texte a afficher dans la notification
- * @returns null
- */
-function persistentNotification(text) {
-  if (!("Notification" in window) || !("ServiceWorkerRegistration" in window)) {
-    alert("Persistent Notification API not supported!");
-    return;
-  }
-
-  try {
-    navigator.serviceWorker
-      .getRegistration()
-      .then((reg) => reg.showNotification(text))
-      .catch((err) => alert("Service Worker registration error: " + err));
-  } catch (err) {
-    alert("Notification API error: " + err);
   }
 }
 
