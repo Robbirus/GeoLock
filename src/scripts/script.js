@@ -18,7 +18,7 @@ if ("Notification" in window) {
  * Fonction permettant de demander la permissions de Notification
  * @returns null
  */
-function requestNotifsPermission() {
+function requestPermission() {
   if (!("Notification" in window)) {
     alert("Notification API not supported!");
     return;
