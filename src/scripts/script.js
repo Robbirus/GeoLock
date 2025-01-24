@@ -53,7 +53,7 @@ function appendLocation(location, verb) {
     ", " +
     location.coords.longitude +
     "";
-  target.innerText(newLocation);
+  target.innerHTML = newLocation;
 }
 
 if ("geolocation" in navigator) {
@@ -137,7 +137,7 @@ function checkDistance() {
  * @param str le texte du status a afficher
  */
 function updateStatus(str) {
-  statusDistance.innerText(str);
+  statusDistance.innerHTML = str;
 }
 
 /**
