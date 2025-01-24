@@ -122,20 +122,20 @@ function toRadians(angle) {
  * La fonction permet d'envoyer des notifications selons la proximités de l'utilisateur au coffre
  */
 function checkDistance() {
-  let distance = distance(lat, lon, latPapier, lonPapier);
+  let d = distance(lat, lon, latPapier, lonPapier);
 
   str = "";
-  if (distance > 1000) {
+  if (d > 1000) {
     str = "Oh, il semblerait que le coffre soit loin";
     persistentNotification(str);
   }
 
-  if (distance < 900 && distance > 50) {
+  if (d < 900 && d > 50) {
     str = "Hey Un coffre est pas loin !";
     persistentNotification(str);
   }
 
-  if (distance < 50) {
+  if (d < 50) {
     vibrateSimple(500);
     vibrateSimple(500);
     vibrateSimple(500);
