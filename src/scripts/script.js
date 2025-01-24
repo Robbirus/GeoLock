@@ -2,6 +2,10 @@
 let latPapier = 45.65496057866898;
 let lonPapier = 0.1489350003864729;
 
+// Les coordonnées latitude longitude de l'utilisateur
+let latUser;
+let lonUser;
+
 navigator.geolocation.getCurrentPosition(success, error, options);
 
 var $notifstatus = document.getElementById("notifstatus");
@@ -40,6 +44,8 @@ function success(pos) {
 
   var lat = crd.latitude;
   var lon = crd.longitude;
+  latUser = lat;
+  lonUser = lon;
 
   console.log(distance(lat, lon, latPapier, lonPapier));
   let distanceTarget = document.getElementById("distancePont");
