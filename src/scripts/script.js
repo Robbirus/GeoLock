@@ -53,7 +53,7 @@ function appendLocation(location, verb) {
     ", " +
     location.coords.longitude +
     "";
-  //target.appendChild(newLocation);
+  target.appendChild(newLocation);
 }
 
 if ("geolocation" in navigator) {
