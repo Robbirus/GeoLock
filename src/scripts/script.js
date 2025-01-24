@@ -4,12 +4,7 @@ let lonPapier = 0.1489350003864729;
 
 navigator.geolocation.getCurrentPosition(success, error, options);
 
-var $geostatus = document.getElementById("geostatus");
 var $notifstatus = document.getElementById("notifstatus");
-
-if ("Geolocalisation" in window) {
-  $geostatus.innerText = Geolocation.permission;
-}
 
 if ("Notification" in window) {
   $notifstatus.innerText = Notification.permission;
@@ -27,21 +22,6 @@ function requestNotifsPermission() {
 
   Notification.requestPermission(function (result) {
     $notifstatus.innerText = result;
-  });
-}
-
-/**
- * Fonction permettant de demander la permissions de Geolocalisation
- * @returns null
- */
-function requestGeoPermission() {
-  if (!("Geolocalisation" in window)) {
-    alert("Geolocalisation API not supported!");
-    return;
-  }
-
-  Geolocation.requestPermission(function (result) {
-    $geostatus.innerText = result;
   });
 }
 
@@ -182,6 +162,10 @@ function checkDistance() {
   let distance = distance(lat, lon, latPapier, lonPapier);
 
   str = "";
+  if (distance > 1000) {
+    str = "Oh, il semblerait que le coffre soit loin";
+    persistentNotification(str);
+  }
 
   if (distance < 100 && distance > 50) {
     str = "Hey Un coffre est pas loin !";
