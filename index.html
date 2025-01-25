@@ -20,7 +20,7 @@
 
     <!--Geolocalisation-->
     <p>
-      <button id="askButton">Ask for location</button>
+      <button id="askButton">Demande votre localisation</button>
     </p>
 
     <div id="target"></div>
@@ -28,12 +28,16 @@
 
     <!--NFC READ-->
     <p>
-      <button id="nfc_read">Open NFC Chest</button>
+      <button id="nfc_read">Ouvrir le mécanisme du coffre</button>
     </p>
 
-    <!--Test de distance-->
+    <p id="chestStatus">
+
+    </p>
+
+    <!--Bouton distance-->
     <button id="distance" onclick="checkDistance()">
-      Obtiens la distance entre l'utilisateur et le coffre
+      Obtenir la distance entre vous et le coffre.
     </button>
     <div id="distancePont"></div>
 

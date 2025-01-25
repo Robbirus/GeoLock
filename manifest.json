@@ -1,0 +1,17 @@
+{
+    "name": "GeoLock Chest Finder",
+    "short_name": "GeoLock",
+    "description": "App qui permet de chercher les coffres cachés proches",
+    "start_url": "/?home=true",
+    "display": "standalone",
+    "background_color": "#f0f0f0",
+    "theme_color": "#f0f0f0",
+    "orientation": "portrait",    
+    "icons": [
+      {
+        "src": "src/img/earth.png",
+        "sizes": "16x16",
+        "type": "image/png"
+      }
+    ]
+  }

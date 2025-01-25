@@ -29,8 +29,10 @@ function success(pos) {
   console.log(distance(lat, lon, latPapier, lonPapier));
   let distanceTarget = document.getElementById("distancePont");
   let lenght = document.createElement("p");
-  lenght.innerHTML =
-    "distance : " + distance(lat, lon, latPapier, lonPapier) + " mètres";
+  if(distance(lat, lon, latPapier, lonPapier) < 100){
+    lenght.innerHTML =
+      "distance : " +  + " mètres";
+  }
   distanceTarget.append(lenght);
 }
 
@@ -70,7 +72,10 @@ if ("geolocation" in navigator) {
 
 // READ NFC
 document.getElementById("nfc_read").addEventListener("click", readTag);
+var chestStatus = document.getElementById("chestStatus");
+var locked;
 
+// Permet de lire un tag NFC
 async function readTag() {
   if ("NDEFReader" in window) {
     const ndef = new NDEFReader();
@@ -81,6 +86,7 @@ async function readTag() {
         for (const record of event.message.records) {
           consoleLog("Record type:  " + record.recordType);
           consoleLog("=== data ===\n" + decoder.decode(record.data));
+          locked = decoder.decode(record.data);
         }
       };
     } catch (error) {
@@ -88,6 +94,26 @@ async function readTag() {
     }
   } else {
     consoleLog("Web NFC is not supported.");
+  }
+}
+
+// Verifier si le coffre est vérouillé, si oui, le coffre s'ouvre
+// et change son status
+if(locked == "unlocked"){
+  chestStatus.innerHTML = "Le coffre est déverouillé";
+
+  async function writeTag() {
+    if ("NDEFReader" in window) {
+      const ndef = new NDEFReader();
+      try {
+        await ndef.write("unlocked");
+        consoleLog("NDEF message written!");
+      } catch(error) {
+        consoleLog(error);
+      }
+    } else {
+      consoleLog("Web NFC is not supported.");
+    }
   }
 }
 
@@ -118,12 +144,12 @@ function checkDistance() {
     updateStatus(str);
   }
 
-  if (d < 900 && d > 50) {
+  if (d < 500 && d > 100) {
     str = "Hey Un coffre est pas loin !";
     updateStatus(str);
   }
 
-  if (d < 50) {
+  if (d < 100) {
     vibrateSimple(500);
     vibrateSimple(500);
     vibrateSimple(500);
