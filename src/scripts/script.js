@@ -1,14 +1,10 @@
 // Les coordonnées latitude longitude du coffre
-/*
 let latChest = 45.65496057866898;
 let lonChest = 0.1489350003864729;
-*/
-let latPapier = 46.152822;
-let lonPapier = -0.210797;
 
 // Les coordonnées latitude longitude de l'utilisateur
-let latUser = 46.152822; 
-let lonUser = -0.210797;
+let latUser; 
+let lonUser;
 
 navigator.geolocation.getCurrentPosition(success, error, options);
 
@@ -25,10 +21,10 @@ function success(pos) {
   console.log(`Latitude : ${crd.latitude}`);
   console.log(`Longitude : ${crd.longitude}`);
 
-  var lat = latUser//crd.latitude;
-  var lon = lonUser//crd.longitude;
-  //latUser = lat;
-  //lonUser = lon;
+  var lat = crd.latitude;
+  var lon = crd.longitude;
+  latUser = lat;
+  lonUser = lon;
 
   console.log(distance(lat, lon, latPapier, lonPapier));
   let distanceTarget = document.getElementById("distancePont");
@@ -154,9 +150,6 @@ function checkDistance() {
   }
 
   if (d < 100) {
-    vibrateSimple(500);
-    vibrateSimple(500);
-    vibrateSimple(500);
     vibrateSimple(500);
     str = "Le coffre est vraiment proche !";
     updateStatus(str);
