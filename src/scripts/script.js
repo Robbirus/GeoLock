@@ -7,8 +7,8 @@ let latPapier = 46.152822;
 let lonPapier = -0.210797;
 
 // Les coordonnées latitude longitude de l'utilisateur
-let latUser = 46.142565; 
-let lonUser = -0.221469;
+let latUser = 46.141581; 
+let lonUser = -0.216969;
 
 navigator.geolocation.getCurrentPosition(success, error, options);
 
