@@ -25,10 +25,10 @@ function success(pos) {
   console.log(`Latitude : ${crd.latitude}`);
   console.log(`Longitude : ${crd.longitude}`);
 
-  var lat = crd.latitude;
-  var lon = crd.longitude;
-  latUser = lat;
-  lonUser = lon;
+  var lat = latUser//crd.latitude;
+  var lon = lonUser//crd.longitude;
+  //latUser = lat;
+  //lonUser = lon;
 
   console.log(distance(lat, lon, latPapier, lonPapier));
   let distanceTarget = document.getElementById("distancePont");
