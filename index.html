@@ -10,39 +10,53 @@
   </head>
 
   <body>
-    <p>
-      Veuillez activez la localisation et le NFC. Si le site ne réagis pas,
-      rechargez la page.
-    </p>
-    <p>
-      Le temps de calcul de la distance peut être un peu long, soyez patient.
-    </p>
+    <div class="box">
 
-    <!--Geolocalisation-->
-    <p>
-      <button id="askButton">Demande votre localisation</button>
-    </p>
+      <div>
+        <h1>
+          Chest Finders
+        </h1>
+      </div>
 
-    <div id="target"></div>
-    <p id="coords"></p>
+      <div>
+        <p>
+          Veuillez activez la localisation et le NFC. Si le site ne réagis pas,
+          rechargez la page.
+        </p>
+        <p>
+          Le temps de calcul de la distance peut être un peu long, soyez patient.
+        </p>
+      </div>
+  
+      <div>
+        <!--Geolocalisation-->
+        <p>
+          <button id="askButton">Demande votre localisation</button>
+        </p>
+    
+    
+        <!--NFC READ-->
+        <p>
+          <button id="nfc_read">Ouvrir le mécanisme du coffre</button>
+        </p>
+    
+        <!--Bouton distance-->
+        <button id="distance" onclick="checkDistance()">
+          Obtenir la distance entre vous et le coffre
+        </button>
+  
+      </div>
 
-    <!--NFC READ-->
-    <p>
-      <button id="nfc_read">Ouvrir le mécanisme du coffre</button>
-    </p>
+      <div>
+        <div id="target"></div>
 
-    <p id="chestStatus">
+        <p id="coords"></p>
+        <p id="chestStatus"></p>    
+        <p id="distancePont"></p> 
+        <p id="statusDistance"></p>
 
-    </p>
+      </div>
 
-    <!--Bouton distance-->
-    <button id="distance" onclick="checkDistance()">
-      Obtenir la distance entre vous et le coffre.
-    </button>
-    <div id="distancePont"></div>
-
-    <div>
-      <p id="statusDistance"></p>
-    </div>
+    </div>    
   </body>
 </html>

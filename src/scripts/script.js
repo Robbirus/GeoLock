@@ -7,8 +7,8 @@ let latPapier = 46.152822;
 let lonPapier = -0.210797;
 
 // Les coordonnées latitude longitude de l'utilisateur
-let latUser = 46.141581; 
-let lonUser = -0.216969;
+let latUser = 46.152822; 
+let lonUser = -0.210797;
 
 navigator.geolocation.getCurrentPosition(success, error, options);
 
@@ -33,7 +33,7 @@ function success(pos) {
   console.log(distance(lat, lon, latPapier, lonPapier));
   let distanceTarget = document.getElementById("distancePont");
   let lenght = document.createElement("p");
-  if(distance(lat, lon, latPapier, lonPapier) < 100){
+  if(distance(lat, lon, latPapier, lonPapier) < 1000){
     lenght.innerHTML =
       "distance : " +  + " mètres";
   }

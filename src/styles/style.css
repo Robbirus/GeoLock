@@ -7,8 +7,8 @@ body {
 
 button {
   display:inline-block;
-  padding:0.3em 1.2em;
-  margin:0 0.3em 0.3em 0;
+  padding:1.2em 1.2em;
+  margin:0.3em 0.3em 0;
   border-radius:2em;
   box-sizing: border-box;
   text-decoration:none;
@@ -18,6 +18,15 @@ button {
   background-color:#4eb5f1;
   text-align:center;
   transition: all 0.2s;
+}
+
+div.box{
+  display: flex;
+  flex-flow: wrap column;
+  justify-content: center;
+  align-items: center;
+  max-width: fit-content;
+  margin-inline: auto;
 }
 
 button:hover{
