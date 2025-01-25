@@ -26,10 +26,10 @@ function success(pos) {
   latUser = lat;
   lonUser = lon;
 
-  console.log(distance(lat, lon, latPapier, lonPapier));
+  console.log(distance(lat, lon, latChest, lonChest));
   let distanceTarget = document.getElementById("distancePont");
   let lenght = document.createElement("p");
-  if(distance(lat, lon, latPapier, lonPapier) < 1000){
+  if(distance(lat, lon, latChest, lonChest) < 1000){
     lenght.innerHTML =
       "distance : " +  + " mètres";
   }
@@ -150,7 +150,7 @@ function checkDistance() {
   }
 
   if (d < 100) {
-    vibrateSimple(500);
+    vibrateSimple(2000);
     str = "Le coffre est vraiment proche !";
     updateStatus(str);
   }

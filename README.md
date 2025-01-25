@@ -14,3 +14,18 @@ A moins de 100 m le site fera vibré le téléphone avec un certain intervalle, 
 Une notification sera envoyé à l'utilisateur qu'un coffre est proche.
 Cependant Netlify ne permet pas les notifications push up.
 Ou alors je n'ai pas réussis à le mettre en place.
+
+Des axes d'améliorations possibles : 
+    Une vibration avec un réel intervalle
+    Une connaissance native des coffres autour
+    Ajout de visuel plus agréable et repondant (L'app n'est pas très intuitif)
+
+
+input : 
+Dans script.js, testez différentes position de coffre en modifiant 
+les variables latChest et lonChest.
+
+lien github: https://github.com/Robbirus/GeoLock
+lien git : https://github.com/Robbirus/GeoLock.git
+
+lien de l'appli web : https://geolocker.netlify.app/
