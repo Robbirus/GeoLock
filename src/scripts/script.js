@@ -1,14 +1,14 @@
 // Les coordonnées latitude longitude du coffre
 /*
-let latPapier = 45.65496057866898;
-let lonPapier = 0.1489350003864729;
+let latChest = 45.65496057866898;
+let lonChest = 0.1489350003864729;
 */
-let latPapier = 46.14195;
-let lonPapier = -0.221425
+let latPapier = 46.152822;
+let lonPapier = -0.210797;
 
 // Les coordonnées latitude longitude de l'utilisateur
-let latUser = 46.142293; 
-let lonUser = -0.221960;;
+let latUser = 46.142565; 
+let lonUser = -0.221469;
 
 navigator.geolocation.getCurrentPosition(success, error, options);
 
