@@ -1,6 +1,10 @@
 // Les coordonnées latitude longitude du coffre
+/*
 let latPapier = 45.65496057866898;
 let lonPapier = 0.1489350003864729;
+*/
+let latPapier = 46.14195;
+let lonPapier = -0.221425
 
 // Les coordonnées latitude longitude de l'utilisateur
 let latUser;
