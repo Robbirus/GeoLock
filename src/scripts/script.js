@@ -142,15 +142,15 @@ function checkDistance() {
   // Si la distance entre le coffre et l'utilisateur est plus grand que 1000 m
   // Alors on envera un msg indiquant que l'utilisateur est vraiment loin
   if (d > 1000) {
-    str = "Oh, il semblerait que le coffre soit loin";
-    updateStatus(str + d + "");
+    str = "Oh, il semblerait que le coffre soit loin ";
+    updateStatus(str + d + " mètres");
   }
 
   // Si la distance entre le coffre et l'utilisateur est entre 100m et 500 m
   // Alors on envera un msg indiquant que l'utilisateur est moyennement loin
   if (d < 500 && d > 100) {
     str = "Hey Un coffre est pas loin !";
-    updateStatus(str + d + "");
+    updateStatus(str + d + " mètres");
   }
 
   // Si la distance entre le coffre et l'utilisateur est entre 100m
@@ -158,7 +158,7 @@ function checkDistance() {
   if (d < 100) {
     vibrateSimple(2000);
     str = "Le coffre est vraiment proche !";
-    updateStatus(str + d + "");
+    updateStatus(str + d + " mètres");
   }
 }
 
