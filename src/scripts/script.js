@@ -136,7 +136,7 @@ var statusDistance = document.getElementById("statusDistance");
  * La fonction permet d'envoyer des notifications selons la proximités de l'utilisateur au coffre
  */
 function checkDistance() {
-  let d = distance(latUser, lonUser, latPapier, lonPapier);
+  let d = distance(latUser, lonUser, latChest, lonChest);
 
   str = "";
   // Si la distance entre le coffre et l'utilisateur est plus grand que 1000 m
